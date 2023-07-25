@@ -41,9 +41,9 @@ const Account = () => {
         } catch (e) {
             alert(e.message)
         }   
-     }
+    }
 
-     const createUserChildren = async (e) => {
+    const createUserChildren = async (e) => {
     
         e.preventDefault(e);
         if(workoutName==='' || weight==='' || reps==='' || sets==='') {
@@ -63,19 +63,19 @@ const Account = () => {
         setReps('')
         setSets('')
         
-      }
-
-      const deleteWorkout = async (id) => {
-        await deleteDoc(doc(db, `users/${userid}/workouts`, id))
-      }
-
-     useEffect(() => {
-        const getName = () => {
-        const unsub = onSnapshot(doc(db, 'users', userid), (doc) => {
-            setUserFN(doc.data())
-        })
-        return () => unsub()
     }
+
+    const deleteWorkout = async (id) => {
+        await deleteDoc(doc(db, `users/${userid}/workouts`, id))
+    }
+
+    useEffect(() => {
+        const getName = () => {
+            const unsub = onSnapshot(doc(db, 'users', userid), (doc) => {
+                setUserFN(doc.data())
+            })
+            return () => unsub()
+        }
 
 
     getName()
@@ -85,16 +85,16 @@ const Account = () => {
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
         let workoutArr = []
         querySnapshot.forEach((doc) => {
-          workoutArr.push({...doc.data(), id: doc.id})
+            workoutArr.push({...doc.data(), id: doc.id})
+            })
+            setWorkouts(workoutArr)
+        
+        
         })
-        setWorkouts(workoutArr)
-        
-        
-      })
-      return () => unsubscribe()
-    }
-    getWorkoutss()
-     }, [])
+        return () => unsubscribe()
+        }
+        getWorkoutss()
+     }, [userid])
 
      return (
         <div className={style.bg}>

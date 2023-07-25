@@ -5,7 +5,7 @@ import { useNavigate, Link } from 'react-router-dom'
 const style = {
     bg: 'max-w-[700px] mx-auto my-16 p-4',
     heading: `text-2xl font-bold py-2 text-[#B85042]`,
-    paragraph: `text-[#B85042]`,
+    paragraph: `text-[#B85042] p-2`,
     form: `flex flex-col py-2`,
     label: `py-2 font-medium text-[#B85042]`,
     input: `border p-3 rounded-md`,

@@ -20,8 +20,13 @@ const Resetpassword = () => {
     const sendEmail = async (e) => {
         e.preventDefault()
         try {
-            resetPassword(email)
-            navigate('/pes')
+            if(email === '') {
+                alert('Please enter email')
+            } else {
+                resetPassword(email)
+                navigate('/pes')
+            }
+            
         } catch {
             alert(e.message)
         }

@@ -29,10 +29,11 @@ export const AuthContextProvider = ({children}) => {
             console.log(currentUser)
             setUser(currentUser)
         })
+        return () => unsubscribe()
     }, [])
 
     return (
-        <UserContext.Provider value={{createUser, auth, logout, signIn}}>
+        <UserContext.Provider value={{createUser, user, logout, signIn}}>
             {children}
         </UserContext.Provider>
     )

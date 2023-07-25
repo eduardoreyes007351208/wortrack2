@@ -25,6 +25,7 @@ const Signin = () => {
             navigate('/account')
         } catch (e) {
             alert('Account not found')
+            setPassword('')
             console.log(e.message)
         }
     }

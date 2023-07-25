@@ -25,6 +25,7 @@ const Signup = () => {
             navigate('/userinfo')
         } catch (e) {
             alert('Account already exists')
+            setPassword('')
             console.log(e.message)
         }
     }

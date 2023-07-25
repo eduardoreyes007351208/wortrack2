@@ -22,7 +22,7 @@ const Signup = () => {
         e.preventDefault()
         try {
             await createUser(email, password)
-            navigate('/account')
+            navigate('/userinfo')
         } catch (e) {
             alert('Account already exists')
             console.log(e.message)

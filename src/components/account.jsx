@@ -13,7 +13,8 @@ const style = {
     heading2: `text-[#B85042]`,
     heading: `text-2xl font-bold text-center text-[#B85042] p-2`,
     form: `flex justify-between text-[#B85042] text-lg font-semibold text-center p-3`,
-    input: `border border-[#A7BEAE] p-2 w-4/5 text-xl rounded-md`,
+    label: `p-3`,
+    input: `border border-[#A7BEAE] p-3 w-4/5 text-xl rounded-md`,
     list: `grid grid-cols-2 `,
     buttonPlus: `text-[#B85042] text-center`,
     button: `border border-[#A7BEAE] px-6 py-2 my-4 bg-[#A7BEAE] text-[#B85042] rounded-md shadow-xl text-md font-bold`
@@ -102,19 +103,19 @@ const Account = () => {
           <div className={style.containters}>
             <form onSubmit={createUserChildren} className={style.form} >
               <div>
-                <label>Name</label>
+                <label className={style.label}>Exercise: </label>
                 <input value={workoutName} onChange={(e) => setworkoutName(e.target.value)} className={style.input} type="text" placeholder='Ex: Bench Press' />
               </div>
               <div>
-                <label>Weight</label>
+                <label className={style.label}>Weight: </label>
                 <input value={weight} onChange={(e) => setWeight(e.target.value)} className={style.input} type="text" placeholder='Ex: 45'/>
               </div>
               <div>
-                <label>Reps</label>
+                <label className={style.label}>Reps: </label>
                 <input value={reps} onChange={(e) => setReps(e.target.value)} className={style.input} type="text" placeholder='Ex: 8'/>
               </div>
               <div>
-                <label>Sets</label>
+                <label className={style.label}>Sets: </label>
                 <input value={sets} onChange={(e) => setSets(e.target.value)} className={style.input} type="text" placeholder='Ex: 4'/>
               </div>
               <button className={style.buttonPlus}> <AiOutlinePlus size={30}/> </button>

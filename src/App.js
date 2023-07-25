@@ -14,7 +14,6 @@ const style = {
 function App() {
   return (
     <div className={style.bg}>
-      <h1>hello</h1>
       <AuthContextProvider>
       <Routes>
         <Route path='/' element={<Signin />} />

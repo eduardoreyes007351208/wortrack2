@@ -20,7 +20,7 @@ const Signin = () => {
     }
 
     useEffect(() => {
-        console.log(user)
+        
     }, [])
 
   return (

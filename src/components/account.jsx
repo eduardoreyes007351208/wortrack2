@@ -4,7 +4,7 @@ import { UserAuth } from '../context/AuthContext'
 
 const Account = () => {
     const navigate = useNavigate()
-    const {user, logout} = UserAuth()
+    const {logout} = UserAuth()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -17,7 +17,7 @@ const Account = () => {
      }
 
      useEffect(() => {
-        console.log(user)
+        
      }, [])
 
   return (

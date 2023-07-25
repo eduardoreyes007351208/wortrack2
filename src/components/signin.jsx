@@ -53,6 +53,11 @@ const Signin = () => {
             </div>
             <button className={style.button}>Sign In</button>
         </form>
+        <div>
+            <p className={style.paragraph}>
+                Forgot Password? <Link to='/resetpassword' className='underline'>Reset Password</Link>
+            </p>
+        </div>
     </div>
   )
 }

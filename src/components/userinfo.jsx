@@ -41,9 +41,9 @@ const Userinfo = () => {
     }
 
     useEffect(() => {
-        console.log(user.uid)
         
-    }, [user.uid])
+        
+    }, [])
 
 
     return (

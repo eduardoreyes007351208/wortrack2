@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { UserAuth } from '../context/AuthContext'
 import { useNavigate, Link } from 'react-router-dom'
+import GoogleButton from 'react-google-button'
 
 const style = {
     bg: 'max-w-[700px] mx-auto my-16 p-4',
     heading: `text-2xl font-bold py-2 text-[#B85042]`,
-    paragraph: `text-[#B85042] p-2`,
+    paragraph: `text-[#B85042] p-4`,
     form: `flex flex-col py-2`,
     label: `py-2 font-medium text-[#B85042]`,
     input: `border p-3 rounded-md`,
@@ -15,7 +16,7 @@ const style = {
 const Signin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {signIn} = UserAuth()
+    const {signIn, googleSignIn, user} = UserAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
@@ -27,6 +28,22 @@ const Signin = () => {
             alert('Account not found')
             setPassword('')
             console.log(e.message)
+        }
+    }
+
+    const handleGoogleSignIn = async (e) => {
+        e.preventDefault()
+        try {
+            
+            if(!user){
+                await googleSignIn()
+                
+            } else {
+                navigate('/account')
+            }
+            
+        } catch (e) {
+            alert(e.message)
         }
     }
 
@@ -53,7 +70,8 @@ const Signin = () => {
             </div>
             <button className={style.button}>Sign In</button>
         </form>
-        <div>
+        <div className='flex flex-col items-center justify-center p-4'>
+            <GoogleButton onClick={handleGoogleSignIn}/>
             <p className={style.paragraph}>
                 Forgot Password? <Link to='/resetpassword' className='underline'>Reset Password</Link>
             </p>

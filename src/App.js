@@ -6,6 +6,7 @@ import Signup from './components/signup'
 import Userinfo from './components/userinfo'
 import Resetpassword from './components/resetpassword'
 import Pes from './components/pes'
+import Userverify from './components/userverify'
 import { AuthContextProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 
@@ -30,6 +31,7 @@ function App() {
         <Route path='/userinfo' element={<ProtectedRoute><Userinfo/></ProtectedRoute>} />
         <Route path='/resetpassword' element={<Resetpassword />} />
         <Route path='/pes' element={<Pes />} />
+        <Route path='/userverify' element={<Userverify />} />
         </Routes>
       </AuthContextProvider>
       

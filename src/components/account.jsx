@@ -22,6 +22,7 @@ const style = {
 
 const Account = () => {
     const {user, logout} = UserAuth() 
+    const [firstname, setFirstName] = useState('')
     const navigate = useNavigate()
     const [workoutName, setworkoutName] = useState('')
     const [weight, setWeight] = useState('')
@@ -71,15 +72,23 @@ const Account = () => {
     }
 
     useEffect(() => {
-        const getName = () => {
+
+        if(!userFN) {
+          setFirstName('')
+          alert('Please fill out user info')
+          navigate('/userinfo')
+        } else {
+          const getName = () => {
             const unsub = onSnapshot(doc(db, 'users', userid), (doc) => {
                 setUserFN(doc.data())
+                setFirstName(userFN.fn)
             })
             return () => unsub()
+          }
+           getName()
         }
 
-
-    getName()
+   
 
     const getWorkoutss = () => {
       const q = query(collection(db, `users/${userid}/workouts`), orderBy('unixDate', 'desc'))
@@ -95,11 +104,11 @@ const Account = () => {
         return () => unsubscribe()
         }
         getWorkoutss()
-     }, [userid])
+     }, [userid, navigate, userFN])
 
      return (
         <div className={style.bg}>
-          <h1 className={style.heading}>Welcome {userFN.fn}!</h1>
+          <h1 className={style.heading}>Welcome {firstname} !</h1>
           <div className={style.containters}>
             <form onSubmit={createUserChildren} className={style.form} >
               <div>

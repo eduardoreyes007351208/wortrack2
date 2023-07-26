@@ -23,7 +23,7 @@ const Signup = () => {
         try {
             await createUser(email, password)
             await verify()
-            navigate('/')
+            navigate('/userverify')
         } catch (e) {
             alert('Account already exists')
             setPassword('')

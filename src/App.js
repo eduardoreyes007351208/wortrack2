@@ -11,18 +11,21 @@ import { AuthContextProvider } from './context/AuthContext'
 import ProtectedRoute from './components/ProtectedRoute'
 
 const style = {
-  bg: `h-full w-full max-w-[2000px] p-4 bg-cover bg-[#E7E8D1]`
+  bg: `h-full w-full max-w-[2000px] p-4 bg-cover bg-[#E7E8D1]`,
+  heading: `text-6xl font-bold py-2 text-[#B85042] text-center italic`,
+  heading2: `text-lg font-bold py-2 text-[#B85042] text-center`
 }
 
 function App() {
 
   useEffect(() => {
-    document.title = 'Workout Tracker'
+    document.title = 'WorTrack'
   }, [])
 
   return (
     <div className={style.bg}>
-      
+      <h1 className={style.heading}>WorTrack</h1>
+      <h2 className={style.heading2}>The Workout Tracking Website</h2>
       <AuthContextProvider>
       <Routes>
         <Route path='/' element={<Signin />} />

@@ -15,14 +15,15 @@ const style = {
 const Signup = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const {createUser} = UserAuth()
+    const {createUser, verify} = UserAuth()
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             await createUser(email, password)
-            navigate('/userinfo')
+            await verify()
+            navigate('/')
         } catch (e) {
             alert('Account already exists')
             setPassword('')

@@ -70,39 +70,43 @@ const Account = () => {
     const deleteWorkout = async (id) => {
         await deleteDoc(doc(db, `users/${userid}/workouts`, id))
     }
+    
 
     useEffect(() => {
         
           
-            const getName = () => {
-              const unsub = onSnapshot(doc(db, 'users', userid), (doc) => {
-                setUserFN(doc.data())
-                setFirstName(userFN.fn)
-              })
-            return () => unsub()
-          }
-           getName()
+      const getName = () => {
+        const unsub = onSnapshot(doc(db, 'users', userid), (doc) => {
+          setUserFN(doc.data())
+          setFirstName(userFN.fn)
+        })
+        return () => unsub()
+      }
+      
           
         
         
 
    
 
-    const getWorkoutss = () => {
-      const q = query(collection(db, `users/${userid}/workouts`), orderBy('unixDate', 'desc'))
-      const unsubscribe = onSnapshot(q, (querySnapshot) => {
-        let workoutArr = []
-        querySnapshot.forEach((doc) => {
+      const getWorkoutss = () => {
+        const q = query(collection(db, `users/${userid}/workouts`), orderBy('unixDate', 'desc'))
+        const unsubscribe = onSnapshot(q, (querySnapshot) => {
+          let workoutArr = []
+          querySnapshot.forEach((doc) => {
             workoutArr.push({...doc.data(), id: doc.id})
-            })
-            setWorkouts(workoutArr)
-        
-        
+          })
+          setWorkouts(workoutArr)
         })
         return () => unsubscribe()
         }
-        getWorkoutss()
-     }, [userid, navigate, userFN, user.emailVerified])
+        (async () => {
+          await getName()
+          await getWorkoutss()
+        })()
+        return () => {}
+        
+    }, [userid, navigate, userFN, user.emailVerified])
 
      return (
         <div className={style.bg}>

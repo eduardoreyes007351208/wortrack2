@@ -72,11 +72,7 @@ const Account = () => {
     }
 
     useEffect(() => {
-        if(!user.emailVerified) {
-          alert('Please verify email (if you already did, then just try again)')
-          navigate('/')
-          window.location.reload(false)
-        } else {
+        
           if(!userFN) {
           setFirstName('')
           alert('Please fill out user info')
@@ -90,7 +86,7 @@ const Account = () => {
             return () => unsub()
           }
            getName()
-          }
+          
         }
         
 

@@ -1,5 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import { UserAuth } from '../context/AuthContext'
+
 
 const style = {
     bg: 'max-w-[700px] mx-auto my-16 p-4 text-center',
@@ -11,14 +13,25 @@ const style = {
 
 const Userverify = () => {
     const navigate = useNavigate()
+    const {user} = UserAuth()
 
     const handleClick = (e) => {
         e.preventDefault()
         try {
-            navigate('/') 
+            if(!user.emailVerified) {
+                alert('Please verify email')
+            } else {
+                navigate('/')
+            }
+             
         } catch (e) {
             alert(e.message)
         }
+    }
+
+    const handleRefresh = (e) => {
+        e.preventDefault()
+        window.location.reload(false)
     }
 
   return (
@@ -27,6 +40,7 @@ const Userverify = () => {
             <h1 className={style.heading}>Verification email sent</h1>
             <h3 className={style.heading2}>Check your email to verify account</h3>
             <button className={style.button} onClick={handleClick}>Return to sign in</button>
+            <button onClick={handleRefresh} className={style.button2}>Click here after verifying</button>
         </div>
     </div>
   )

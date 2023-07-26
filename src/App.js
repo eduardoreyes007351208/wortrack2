@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {Route, Routes} from 'react-router-dom'
 import Account from './components/account'
 import Signin from './components/signin'
@@ -14,8 +14,15 @@ const style = {
 }
 
 function App() {
+
+  useEffect(() => {
+    document.title = 'Workout Tracker'
+  }, [])
+
   return (
+
     <div className={style.bg}>
+      
       <AuthContextProvider>
       <Routes>
         <Route path='/' element={<Signin />} />

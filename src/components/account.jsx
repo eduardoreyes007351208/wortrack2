@@ -72,21 +72,27 @@ const Account = () => {
     }
 
     useEffect(() => {
-
-        if(!userFN) {
+        if(!user.emailVerified) {
+          alert('Please verify email')
+          navigate('/')
+          window.location.reload(false)
+        } else {
+          if(!userFN) {
           setFirstName('')
           alert('Please fill out user info')
           navigate('/userinfo')
-        } else {
-          const getName = () => {
-            const unsub = onSnapshot(doc(db, 'users', userid), (doc) => {
+          } else {
+            const getName = () => {
+              const unsub = onSnapshot(doc(db, 'users', userid), (doc) => {
                 setUserFN(doc.data())
                 setFirstName(userFN.fn)
-            })
+              })
             return () => unsub()
           }
            getName()
+          }
         }
+        
 
    
 
@@ -104,7 +110,7 @@ const Account = () => {
         return () => unsubscribe()
         }
         getWorkoutss()
-     }, [userid, navigate, userFN])
+     }, [userid, navigate, userFN, user.emailVerified])
 
      return (
         <div className={style.bg}>

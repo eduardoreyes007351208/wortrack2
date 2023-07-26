@@ -73,7 +73,7 @@ const Account = () => {
 
     useEffect(() => {
         if(!user.emailVerified) {
-          alert('Please verify email')
+          alert('Please verify email (if you already did, then just try again)')
           navigate('/')
           window.location.reload(false)
         } else {
@@ -114,7 +114,7 @@ const Account = () => {
 
      return (
         <div className={style.bg}>
-          <h1 className={style.heading}>Welcome {firstname} !</h1>
+          <h1 className={style.heading}>Welcome {firstname}!</h1>
           <div className={style.containters}>
             <form onSubmit={createUserChildren} className={style.form} >
               <div>

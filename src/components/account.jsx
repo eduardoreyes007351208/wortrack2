@@ -73,11 +73,7 @@ const Account = () => {
 
     useEffect(() => {
         
-          if(!userFN) {
-          setFirstName('')
-          alert('Please fill out user info')
-          navigate('/userinfo')
-          } else {
+          
             const getName = () => {
               const unsub = onSnapshot(doc(db, 'users', userid), (doc) => {
                 setUserFN(doc.data())
@@ -87,7 +83,7 @@ const Account = () => {
           }
            getName()
           
-        }
+        
         
 
    
